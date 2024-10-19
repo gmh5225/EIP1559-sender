@@ -10,3 +10,8 @@ EIP1559-sender is a Go-based Ethereum transaction sending tool specifically desi
   
 ## Dependencies
 - go-ethereum
+
+## Usage
+```
+eip1559_sender -privateKey ... -receiver 0x... -rpcURL https://... -chainID 1 -tokenValue 0.1
+```
