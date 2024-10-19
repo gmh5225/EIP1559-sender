@@ -33,7 +33,7 @@ go clean -modcache
 
 ## Usage
 ```
-eip1559_sender -privateKey ... -receiver 0x... -rpcURL https://... -chainID 1 -tokenValue 0.1
+eip1559_sender -privateKey ... -receiver 0x... -rpcURL https://... -chainID 421614 -tokenValue 0.1
 ```
 
 ## Example output
