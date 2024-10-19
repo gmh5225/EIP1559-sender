@@ -36,3 +36,18 @@ Estimated gas limit: 25345
 Transaction sent successfully! Transaction hash: 0x11a34e46dbc5c0af56e724b88ec12fbf041f0cc70b28a7de10bfd8433ea71c62
 Please check the transaction status on the blockchain explorer
 ```
+
+## Install
+``
+go install github.com/gmh5225/EIP1559-sender@main
+``
+
+## Uninstall
+``
+where/which EIP1559-sender
+``
+
+## Clean module cache
+``
+go clean -modcache
+``
