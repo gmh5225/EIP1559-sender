@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"math/big"
+	"os"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
@@ -15,17 +16,28 @@ import (
 )
 
 func main() {
-
-	privateKeyFlag := flag.String("privateKey", "", "sender's private key")
-	receiverFlag := flag.String("receiver", "", "receiver's address")
+	privateKeyFlag := flag.String("privateKey", "", "Sender's private key")
+	receiverFlag := flag.String("receiver", "", "Receiver's address")
 	rpcURLFlag := flag.String("rpcURL", "", "RPC URL")
-	chainIDFlag := flag.Int64("chainID", 0, "chain ID (if 0, it will be automatically obtained)")
-	tokenValueFlag := flag.Float64("tokenValue", 0, "transfer amount")
+	chainIDFlag := flag.Int64("chainID", 0, "Chain ID (if 0, it will be automatically obtained)")
+	tokenValueFlag := flag.Float64("tokenValue", 0, "Transfer amount")
+
+	// Add usage information
+	flag.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s [options]\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "\nOptions:\n")
+		flag.PrintDefaults()
+		fmt.Fprintf(flag.CommandLine.Output(), "\nExample:\n")
+		fmt.Fprintf(flag.CommandLine.Output(), "  %s -privateKey 0x... -receiver 0x... -rpcURL https://... -chainID 1 -tokenValue 0.1\n", os.Args[0])
+	}
 
 	flag.Parse()
 
+	// Check if required parameters are provided
 	if *privateKeyFlag == "" || *receiverFlag == "" || *rpcURLFlag == "" || *tokenValueFlag == 0 {
-		log.Fatal("All flags are required")
+		fmt.Println("Error: Missing required parameters")
+		flag.Usage()
+		os.Exit(1)
 	}
 
 	// get private key and receiver address
