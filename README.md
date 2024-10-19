@@ -9,7 +9,7 @@ EIP1559-sender is a Go-based Ethereum transaction sending tool specifically desi
 - Calculation of optimal `maxFeePerGas`
   
 ## Dependencies
-- go-ethereum
+- ``go get github.com/ethereum/go-ethereum``
 
 ## Usage
 ```
