@@ -1,10 +1,9 @@
 name: Build EIP1559-sender
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+permissions:
+  contents: write
+  
+on: [push, pull_request]
 
 jobs:
 
@@ -48,3 +47,13 @@ jobs:
       with:
         name: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
         path: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
+    
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: ${{ startsWith(github.ref, 'refs/tags/') }}
+      with:
+        prerelease: ${{ !startsWith(github.ref, 'refs/tags/v') || contains(github.ref, '-pre') }}
+        files: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
