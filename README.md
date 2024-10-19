@@ -2,6 +2,11 @@
 
 EIP1559-sender is a Go-based Ethereum transaction sending tool specifically designed to support the EIP-1559 gas fee mechanism.
 
+## Basic concepts
+- ``maxFeePerGas >= (base Fee + priority Fee)``
+- ``gas Fee = min(base Fee + priority Fee, maxFeePerGas) * gas limit``
+- ``riority Fee = min(maxPriorityFeePerGas, maxFeePerGas - base Fee)``
+
 ## Features
 - Utilizes the `go-ethereum` client library
 - Implements EIP-1559's `DynamicFeeTx` transaction type
