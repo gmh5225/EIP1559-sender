@@ -18,7 +18,7 @@ EIP1559-sender is a Go-based Ethereum transaction sending tool specifically desi
 
 ## Install
 ``
-go install github.com/gmh5225/EIP1559-sender@main
+go install github.com/gmh5225/EIP1559-sender@v0.0.1
 ``
 
 ## Uninstall
