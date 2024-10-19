@@ -44,7 +44,7 @@ jobs:
       run: go build -v -o EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
         path: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
