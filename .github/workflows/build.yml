@@ -50,7 +50,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.goos == 'windows' && '.exe' || '' }}
+        name: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}
         path: EIP1559-sender-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.goos == 'windows' && '.exe' || '' }}
     
     - name: Release
