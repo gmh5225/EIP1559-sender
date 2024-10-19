@@ -1,4 +1,4 @@
-module eip1559_sender
+module github.com/gmh5225/EIP1559-sender
 
 go 1.22.5
 
