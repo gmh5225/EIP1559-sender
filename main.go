@@ -86,16 +86,16 @@ func main() {
 	fmt.Printf("Base fee: %s\n", baseFee.String())
 
 	// get suggested tip cap (maxPriorityFeePerGas)
-	gasTipCap, err := client.SuggestGasTipCap(context.Background())
+	maxPriorityFeePerGas, err := client.SuggestGasTipCap(context.Background())
 	if err != nil {
-		log.Fatalf("Failed to get suggested tip cap: %v", err)
+		log.Fatalf("Failed to get suggested maxPriorityFeePerGas: %v", err)
 	}
-	fmt.Printf("Suggested tip cap: %s\n", gasTipCap.String())
+	fmt.Printf("Suggested maxPriorityFeePerGas: %s\n", maxPriorityFeePerGas.String())
 
-	// calculate maxFeePerGas (usually baseFee * 2 + gasTipCap)
+	// calculate maxFeePerGas (usually baseFee * 2 + maxPriorityFeePerGas)
 	maxFeePerGas := new(big.Int).Add(
 		new(big.Int).Mul(baseFee, big.NewInt(2)),
-		gasTipCap,
+		maxPriorityFeePerGas,
 	)
 	fmt.Printf("Max fee per gas: %s\n", maxFeePerGas.String())
 
@@ -114,7 +114,7 @@ func main() {
 	tx := types.NewTx(&types.DynamicFeeTx{
 		ChainID:   chainID,
 		Nonce:     nonce,
-		GasTipCap: gasTipCap,
+		GasTipCap: maxPriorityFeePerGas,
 		GasFeeCap: maxFeePerGas,
 		Gas:       gasLimit,
 		To:        &toAddress,
