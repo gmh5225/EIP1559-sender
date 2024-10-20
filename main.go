@@ -202,11 +202,11 @@ func main() {
 }
 
 func getTokenDecimals(client *ethclient.Client, tokenAddress common.Address) (uint8, error) {
-	data := []byte{0x67, 0xe5, 0x3c, 0x31} // Correct byte order for "decimals()" function selector
+	data := []byte{0x31, 0x3c, 0xe5, 0x67} // Correct byte order for "decimals()" function selector
 	msg := ethereum.CallMsg{To: &tokenAddress, Data: data}
 	result, err := client.CallContract(context.Background(), msg, nil)
 	if err != nil {
 		return 0, err
 	}
-	return result[0], nil
+	return result[len(result)-1], nil // The result is a uint8, padded to 32 bytes, so we take the last byte
 }
